@@ -1,0 +1,170 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+      <div class="col-first">
+        <h1>Shop Category page</h1>
+        <nav class="d-flex align-items-center">
+          <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+          <a href="category.html">Fashion Category</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Banner Area -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-3 col-lg-4 col-md-5">
+      <div class="sidebar-categories">
+        <div class="head">Browse Categories</div>
+        <ul class="main-categories">
+          <li class="main-nav-list" *ngFor="let category of categories">
+            <a class="border-bottom-0"
+               [ngClass]="{'selected': selectedCategoryName === category.cname}"
+               (click)="onCategoryChange(category.cname)">
+              <span class="lnr lnr-arrow-right"></span>{{ category.cname }}
+              <span class="number">({{ category.productCount }})</span>
+            </a>
+          </li>
+          <li class="main-nav-list">
+            <a class="border-bottom-0"
+               [ngClass]="{'selected': selectedCategoryName === 'All'}"
+               (click)="onCategoryChange('')">
+              <span class="lnr lnr-arrow-right"></span> Tất cả
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="sidebar-filter mt-50">
+        <div class="top-filter-head">Product Filters</div>
+        <div class="common-filter">
+          <div class="head">Color</div>
+          <form>
+            <ul>
+              <li class="filter-list" *ngFor="let color of colorCounts.keys()">
+                <input class="pixel-radio" type="radio" [id]="color" name="color" [value]="color" (change)="onColorChange($event)" [checked]="selectedColor === color" />
+                <label [for]="color">
+                  {{ color }}<span> ({{ colorCounts.get(color) }})</span>
+                </label>
+              </li>
+            </ul>
+          </form>
+        </div>
+        <div class="common-filter">
+          <div class="head">Price Range</div>
+          <form>
+            <input type="number" placeholder="Min Price" [(ngModel)]="minPrice" class="form-control mb-3" name="minPrice" />
+            <input type="number" placeholder="Max Price" [(ngModel)]="maxPrice" class="form-control mb-3" name="maxPrice" />
+            <button type="button" class="btn btn-primary" (click)="filterByPrice()">Filter by Price</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-9 col-lg-8 col-md-7">
+      <!-- Start Filter Bar -->
+      <div class="filter-bar d-flex flex-wrap align-items-center">
+        <div class="sorting">
+          <div class="dropdown">
+            <button class="dropdown-btn">Sort By</button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item" (click)="sortProducts('price-asc')">Price: Low to High</button></li>
+              <li><button class="dropdown-item" (click)="sortProducts('price-desc')">Price: High to Low</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sorting mr-auto">
+          <div class="dropdown">
+            <button class="dropdown-btn">Show {{ itemsPerPage }}</button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item" (click)="setItemsPerPage('3')">Show 3</button></li>
+              <li><button class="dropdown-item" (click)="setItemsPerPage('6')">Show 6</button></li>
+              <li><button class="dropdown-item" (click)="setItemsPerPage('9')">Show 9</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="pagination">
+          <button class="btn btn-outline-primary" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+          <button class="btn btn-outline-primary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+        </div>
+      </div>
+      <!-- End Filter Bar -->
+
+      <!-- Start Product List -->
+      <section class="latest-product-area pb-40 category-list">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let product of filteredProducts">
+            <div class="single-product">
+              <img class="img-fluid product-image" [src]="product.image" alt="{{ product.name }}">
+              <div class="product-details">
+                <h6>{{ product.name }}</h6>
+                <div class="price">
+                  <h6>{{ product.price | number: '1.0-0' }} VND</h6>
+                  <h6 class="l-through">{{ (product.price * 1.4) | number: '1.0-0' }} VND</h6>
+                </div>
+                <div class="prd-bottom">
+                  <a class="social-info" (click)="addToCart(product)">
+                    <span class="ti-bag"></span>
+                    <p class="hover-text">Add to bag</p>
+                  </a>
+                  <a class="social-info" [routerLink]="['/single-product', product.id]">
+                    <span class="lnr lnr-move"></span>
+                    <p class="hover-text">View more</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Product List -->
+    </div>
+  </div>
+</div>
+
+<!-- Start related-product Area -->
+<section class="related-product-area section_gap_bottom">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 text-center">
+        <div class="section-title">
+          <h1>Deals of the Week</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="row">
+          <!-- NgFor Loop for Top Sale Products -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-20" *ngFor="let product of bestSaleProduct">
+            <div class="single-related-product d-flex">
+              <a (click)="navigateAndReload(product.id!)">
+                <img [src]="product.image" alt="{{ product.name }}" class="product-image-1">
+              </a>
+              <div class="desc">
+                <a [href]="" class="title">{{ product.name }}</a>
+                <div class="price">
+                  <h6>{{ product.price | currency: 'VND' }}</h6>
+                  <h6 class="l-through">{{ (product.price * 1.4) | currency: 'VND' }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="ctg-right">
+          <a href="#" target="_blank">
+            <img class="img-fluid d-block mx-auto" src="assets/img/category/c5.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End related-product Area -->

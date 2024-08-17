@@ -1,0 +1,6 @@
+.product-image {
+  width: 100px; /* Chiều rộng cố định */
+  height: auto; /* Chiều cao cố định */
+  object-fit: cover; /* Giữ tỷ lệ ảnh, cắt nếu cần để vừa kích thước */
+  border-radius: 10px; /* Tùy chọn: bo tròn các góc */
+}

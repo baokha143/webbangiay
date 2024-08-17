@@ -1,0 +1,53 @@
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            <div class="returning_customer" *ngIf="!isLoggedIn">
+                <div class="check_title">
+                    <h2>Bạn phải tiến hành đăng nhập!<a [routerLink]="['/login']">Click here to login</a></h2>
+                </div>
+                <p>Bạn phải tiến hành đăng nhập trước mới có thể đặt hàng!.</p>
+            </div>
+            <div class="billing_details" *ngIf="isLoggedIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list" *ngFor="let item of cartItems">
+                                <li><img [src]="item.image" alt="{{ item.name }}" class="product-image-1"><span class="middle">{{item.price | currency: 'VND' }}</span></li>
+                                <li><a>{{item.name}} </a></li>
+                                <li>Số Lượng: <span class="middle">x {{item.quantity}}</span> </li>
+                                <br>
+                                <li><span class="middle">{{item.price * item.quantity | currency: 'VND' }}</span></li>
+                                <br><hr>
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a>Subtotal <span>{{total | currency: 'VND'}}</span></a></li>
+                                <li><a>Shipping <span>free </span></a></li>
+                                <li><a href="#">Total <span>{{total | currency: 'VND'}}</span></a></li>
+                            </ul>
+                            <div class="payment_item">
+                              <div class="radion_btn">
+                                  <input type="radio" id="f-option5" name="paymentMethod" (click)="onPaymentMethodChange('vnpay')">
+                                  <label for="f-option5">Thanh Toán VNPAY</label>
+                                  <div class="check"></div>
+                              </div>
+                              <p>Thanh toán qua cổng VNPAY.</p>
+                          </div>
+                            <div class="payment_item active">
+                                <div class="radion_btn">
+                                    <input type="radio" id="f-option6" name="paymentMethod" (click)="onPaymentMethodChange('TienMat')">
+                                    <label for="f-option6">Thu Tiền Mặt</label>
+                                    <div class="check"></div>
+                                </div>
+                                <p>Nhận hàng đưa tiền cho ship</p>
+                            </div>
+                            <a class="primary-btn" (click)="initiatePayment()">Thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+

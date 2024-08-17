@@ -1,0 +1,6 @@
+.product-image-1 {
+  width: 100px; /* Điều chỉnh độ rộng của hình ảnh để phù hợp với kích thước cột */
+  height: auto; /* Đảm bảo tỷ lệ của hình ảnh không bị thay đổi */
+  max-height: 200px; /* Điều chỉnh chiều cao tối đa của hình ảnh */
+  object-fit: cover; /* Cắt và làm đầy vùng hình ảnh mà không thay đổi tỷ lệ */
+}

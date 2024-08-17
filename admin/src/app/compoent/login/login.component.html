@@ -1,0 +1,47 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic">
+                <img src="assets/images/team.jpg" alt="IMG">
+            </div>
+            <!--=====TIÊU ĐỀ======-->
+            <form class="login100-form" (ngSubmit)="onSubmit()">
+                <span class="login100-form-title">
+                    <b>ĐĂNG NHẬP HỆ THỐNG POS</b>
+                </span>
+                <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======-->
+                <div class="wrap-input100">
+                    <input class="input100" type="text" placeholder="Tài khoản quản trị" name="username" [(ngModel)]="username" #usernameInput="ngModel" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class='bx bx-user'></i>
+                    </span>
+                    <div *ngIf="usernameInput.invalid && usernameInput.touched" class="error-message">
+                        Tài khoản quản trị không được để trống
+                    </div>
+                </div>
+                <div class="wrap-input100">
+                    <input class="input100" [type]="passwordFieldType" placeholder="Mật khẩu" name="password" [(ngModel)]="password" #passwordInput="ngModel" required>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class='bx bx-key'></i>
+                    </span>
+                    <i class="bx" [ngClass]="{'bx-show': passwordFieldType === 'text', 'bx-hide': passwordFieldType === 'password'}" (click)="togglePasswordVisibility()"></i>
+                    <div *ngIf="passwordInput.invalid && passwordInput.touched" class="error-message">
+                        Mật khẩu không được để trống
+                    </div>
+                </div>
+
+                <!--=====ĐĂNG NHẬP======-->
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">Đăng nhập</button>
+                </div>
+            </form>
+            <!--=====FOOTER======-->
+            <div class="text-center p-t-70 txt2">
+                Phần mềm quản lý bán hàng <i class="far fa-copyright" aria-hidden="true"></i>
+                <script type="text/javascript">document.write(new Date().getFullYear());</script> <a class="txt2" href="https://www.facebook.com/nth22803/"> Code bởi IT dỏm </a>
+            </div>
+        </div>
+    </div>
+</div>

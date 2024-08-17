@@ -1,0 +1,170 @@
+<main class="app-content">
+  <div class="app-title">
+      <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item">Danh sách sản phẩm</li>
+          <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+      </ul>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="tile">
+              <h3 class="tile-title">Tạo mới sản phẩm</h3>
+              <div class="tile-body">
+                  <div class="row element-button">
+                      <div class="col-sm-2">
+                          <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addCategory">
+                              <i class="fas fa-folder-plus"></i> Thêm danh mục
+                          </a>
+                      </div>
+                      <div class="col-sm-2">
+                          <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#addProductStatus">
+                              <i class="fas fa-folder-plus"></i> Thêm tình trạng
+                          </a>
+                      </div>
+                  </div>
+                  <form class="row">
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Mã sản phẩm</label>
+                          <input class="form-control" type="number" id="productId" placeholder="">
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Tên sản phẩm</label>
+                          <input class="form-control" type="text" id="productName">
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Giá bán</label>
+                          <input class="form-control" type="text" id="productPrice">
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Danh mục</label>
+                          <select class="form-control" id="productCategory">
+                              <option value="">-- Chọn danh mục --</option>
+                              <!-- Options will be populated dynamically -->
+                          </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Tình trạng</label>
+                          <select class="form-control" id="productStatus">
+                              <option value="">-- Chọn tình trạng --</option>
+                              <!-- Options will be populated dynamically -->
+                          </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Màu sắc</label>
+                          <select class="form-control" id="productColor">
+                              <option value="">-- Chọn màu sắc --</option>
+                              <!-- Options will be populated dynamically -->
+                          </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                          <label class="control-label">Số lượng</label>
+                          <input class="form-control" type="number" id="productStock">
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label class="control-label">Ảnh sản phẩm</label>
+                          <div id="imageUpload">
+                              <input type="file" id="productImage" name="productImage" onchange="previewImage(this);" />
+                              <div id="imagePreview">
+                                  <img id="thumbImage" class="image-preview__image" src="" alt="Image preview" style="display: none;" />
+                                  <span id="filename" class="image-preview__default-text">Chưa chọn ảnh</span>
+                              </div>
+                              <button id="removeImg" class="removeimg" style="display: none;">Xóa hình</button>
+                          </div>
+                      </div>
+                      <div class="form-group col-md-12">
+                          <label class="control-label">Mô tả sản phẩm</label>
+                          <textarea class="form-control" name="productDescription" id="productDescription"></textarea>
+                          <script>CKEDITOR.replace('productDescription');</script>
+                      </div>
+                      <button class="btn btn-save" type="button">Lưu lại</button>
+                      <a class="btn btn-cancel" href="table-data-product.html">Hủy bỏ</a>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>
+
+<!-- MODAL DANH MỤC -->
+<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="addCategoryTitle" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="form-group col-md-12">
+                      <h5>Thêm mới danh mục</h5>
+                  </div>
+                  <div class="form-group col-md-12">
+                      <label class="control-label">Nhập tên danh mục mới</label>
+                      <input class="form-control" type="text" required id="newCategoryName">
+                  </div>
+                  <div class="form-group col-md-12">
+                      <label class="control-label">Danh mục hiện tại</label>
+                      <ul id="existingCategories" style="padding-left: 20px;">
+                          <!-- Existing categories will be listed here -->
+                      </ul>
+                  </div>
+              </div>
+              <br>
+              <button class="btn btn-save" type="button" id="saveCategory">Lưu lại</button>
+              <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+              <br>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- MODAL TÌNH TRẠNG -->
+<div class="modal fade" id="addProductStatus" tabindex="-1" role="dialog" aria-labelledby="addProductStatusTitle" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="form-group col-md-12">
+                      <h5>Thêm mới tình trạng</h5>
+                  </div>
+                  <div class="form-group col-md-12">
+                      <label class="control-label">Nhập tình trạng mới</label>
+                      <input class="form-control" type="text" required id="newProductStatus">
+                  </div>
+              </div>
+              <br>
+              <button class="btn btn-save" type="button" id="saveProductStatus">Lưu lại</button>
+              <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+              <br>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  // Function to preview image
+  function previewImage(input) {
+      const file = input.files[0];
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+              const thumbImage = document.getElementById('thumbImage');
+              const filename = document.getElementById('filename');
+              const removeImg = document.getElementById('removeImg');
+              thumbImage.src = e.target.result;
+              thumbImage.style.display = 'block';
+              filename.style.display = 'none';
+              removeImg.style.display = 'inline';
+          }
+          reader.readAsDataURL(file);
+      }
+  }
+
+  // Function to remove image
+  document.getElementById('removeImg').addEventListener('click', function() {
+      const thumbImage = document.getElementById('thumbImage');
+      const filename = document.getElementById('filename');
+      const removeImg = document.getElementById('removeImg');
+      document.getElementById('productImage').value = '';
+      thumbImage.src = '';
+      thumbImage.style.display = 'none';
+      filename.style.display = 'inline';
+      removeImg.style.display = 'none';
+  });
+</script>

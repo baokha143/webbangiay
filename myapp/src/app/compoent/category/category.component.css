@@ -1,0 +1,104 @@
+.product-image {
+  width: 200px; /* Chiều rộng cố định */
+  height: 100px; /* Chiều cao cố định */
+  object-fit: cover; /* Giữ tỷ lệ ảnh, cắt nếu cần để vừa kích thước */
+  border-radius: 10px; /* Tùy chọn: bo tròn các góc */
+}
+.product-image-1 {
+  width: 100px; /* Điều chỉnh độ rộng của hình ảnh để phù hợp với kích thước cột */
+  height: auto; /* Đảm bảo tỷ lệ của hình ảnh không bị thay đổi */
+  max-height: 200px; /* Điều chỉnh chiều cao tối đa của hình ảnh */
+  object-fit: cover; /* Cắt và làm đầy vùng hình ảnh mà không thay đổi tỷ lệ */
+}
+.filter-list {
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 5px;
+  color: gray; /* Ensure text color contrasts with background */
+}
+
+.filter-list input.pixel-radio {
+  margin-right: 5px;
+}
+.sidebar-categories .main-categories .main-nav-list a {
+  cursor: pointer; /* Thay đổi kiểu con trỏ khi di chuột qua liên kết */
+}
+
+.sidebar-categories .main-categories .main-nav-list a:hover {
+  text-decoration: underline; /* Thay đổi kiểu chữ khi di chuột qua liên kết */
+}
+.sidebar-categories .main-categories .main-nav-list a.selected {
+  color: orange; /* Màu cam khi mục được chọn */
+  font-weight: bold; /* Tùy chọn: làm đậm văn bản của mục được chọn */
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropdown-btn{
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Show the dropdown menu when button is clicked */
+.dropdown:hover .dropdown-menu{
+  display: block;
+  background-color: white;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  padding: 12px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+}
+
+/* Dropdown item hover effect */
+.dropdown-item:hover{
+  background-color: orange;
+}
+
+/* Pagination buttons */
+.btn-outline-primary {
+  border-color: orange;
+  color: orange;
+}
+
+.btn-outline-primary:hover {
+  background-color: orange;
+  color: white;
+}
+
+/* Page info */
+.page-info {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 16px;
+  color: black;
+  line-height: 2.5; /* Căn giữa theo chiều dọc với các nút */
+}

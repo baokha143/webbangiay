@@ -1,0 +1,12 @@
+.product-image {
+  width: 200px; /* Chiều rộng cố định */
+  height: 100px; /* Chiều cao cố định */
+  object-fit: cover; /* Giữ tỷ lệ ảnh, cắt nếu cần để vừa kích thước */
+  border-radius: 10px; /* Tùy chọn: bo tròn các góc */
+}
+.product-image-1 {
+  width: 100px; /* Điều chỉnh độ rộng của hình ảnh để phù hợp với kích thước cột */
+  height: auto; /* Đảm bảo tỷ lệ của hình ảnh không bị thay đổi */
+  max-height: 200px; /* Điều chỉnh chiều cao tối đa của hình ảnh */
+  object-fit: cover; /* Cắt và làm đầy vùng hình ảnh mà không thay đổi tỷ lệ */
+}

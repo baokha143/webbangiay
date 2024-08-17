@@ -1,0 +1,64 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <div class="row element-button">
+            <div class="col-sm-2">
+              <a class="btn btn-add btn-sm" [routerLink]="['/form-add-don-hang']" title="Thêm"><i class="fas fa-plus"></i> Tạo mới đơn hàng</a>
+            </div>
+            <div class="col-sm-2">
+              <a class="btn btn-excel btn-sm" href="" title="Xuất Excel"><i class="fas fa-file-excel"></i> Xuất Excel</a>
+            </div>
+            <div class="col-sm-2">
+              <a class="btn btn-delete btn-sm" type="button" title="Xóa" (click)="deleteAll()"><i class="fas fa-trash-alt"></i> Xóa tất cả</a>
+            </div>
+          </div>
+          <table class="table table-hover table-bordered" id="sampleTable">
+            <thead>
+              <tr>
+                <th width="10"><input type="checkbox" id="all"></th>
+                <th>ID Đơn Hàng</th>
+                <th>Khách hàng</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Màu Sắc</th>
+                <th>Số Lượng</th>
+                <th>Tổng Tiền</th>
+                <th>Ngày Xuất</th>
+                <th>Cập Nhật</th>
+                <th>Tình Trạng</th>
+                <th>Tính Năng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let invoice of invoices">
+                <td width="10"><input type="checkbox" name="check1" [value]="invoice.maHD"></td>
+                <td>{{ invoice.maHD }}</td>
+                <td>{{ invoice.account.username }}</td>
+                <td>{{ invoice.productSize.product.name }}</td>
+                <td>{{ invoice.productSize.color }}</td>
+                <td>{{ invoice.productSize.stock }}</td>
+                <td>{{ invoice.tongGia | currency }}</td>
+                <td>{{ invoice.ngayXuat | date }}</td>
+                <td>{{ invoice.updatedAt | date }}</td>
+                <td>
+                  <span class="badge" [ngClass]="{'bg-danger': invoice.status === 'CANCELLED', 'bg-success': invoice.status === 'DELIVERED', 'bg-warning': invoice.status === 'SHIPPED', 'bg-info': invoice.status === 'PENDING'}">{{ invoice.status | titlecase }}</span>
+                </td>
+                <td>
+                  <button class="btn btn-primary btn-sm trash" type="button" (click)="deleteInvoice(invoice.maHD)" title="Xóa"><i class="fas fa-trash-alt"></i></button>
+                  <button class="btn btn-primary btn-sm edit" type="button" [routerLink]="['/edit-don-hang', invoice.maHD]" title="Sửa"><i class="fa fa-edit"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

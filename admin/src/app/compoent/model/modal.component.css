@@ -1,0 +1,30 @@
+/* Đảm bảo modal được căn chỉnh và không ảnh hưởng đến các thành phần khác */
+.modal {
+    display: none; /* Ẩn modal khi không hiển thị */
+    position: fixed; /* Đặt modal cố định trên màn hình */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Nền tối cho modal */
+    z-index: 1050; /* Đảm bảo modal hiển thị trên các phần tử khác */
+    overflow: auto; /* Cho phép cuộn nếu nội dung quá lớn */
+  }
+  
+  .modal.show {
+    display: block; /* Hiển thị modal khi isVisible = true */
+  }
+  
+  .modal-dialog {
+    position: relative;
+    margin: 10px auto;
+    max-width: 500px; /* Kích thước tối đa của modal */
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #fff; /* Màu nền của modal */
+    border-radius: 0.3rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  

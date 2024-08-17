@@ -1,0 +1,112 @@
+
+
+
+
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Shopping Cart</h1>
+                    <nav class="d-flex align-items-center">
+                        <a [routerLink]="['/']">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a [routerLink]="['/category']">Cart</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of cartItems">
+                            <td>
+                              <div class="media">
+                                <div class="d-flex">
+                                  <img [src]="item.image" alt="{{item.name}}" class="product-image">
+                                </div>
+                                <div class="media-body">
+                                  <p>{{item.name}}</p>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <div class="product_count">
+                                <input type="text" [value]="item.selectedSize" title="selectedSize:" class="input-text qty" readonly>
+                                <button (click)="updateSize(item, true)" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                <button (click)="updateSize(item, false)" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                              </div>
+
+                            </td>
+                            <td>
+                              <h5>{{item.price | currency:'VND'}}</h5>
+                            </td>
+                            <td>
+                              <div class="product_count">
+                                <input type="text" [value]="item.quantity" title="Quantity:" class="input-text qty" readonly>
+                                <button (click)="updateQuantity(item, true)" class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                <button (click)="updateQuantity(item, false)" class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                              </div>
+                            </td>
+                            <td>
+                              <h5>{{item.price * item.quantity | currency:'VND'}}</h5>
+                            </td>
+                          </tr>
+                            <tr class="col-12">
+                              <td>
+
+                              </td>
+                              <td>
+
+                              </td>
+                                <td>
+                                    <h5>Subtotal</h5>
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                  <h5>{{total | currency:'VND'}}</h5>
+                                </td>
+                            </tr>
+
+                            <tr class="out_button_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" [routerLink]="['/']">Tiếp tục Mua Sắm</a>
+                                        <a class="primary-btn" [routerLink]="['/checkout']">Tiến hành thanh toán</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+

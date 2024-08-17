@@ -1,0 +1,81 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item">Danh sách nhân viên</li>
+      <li class="breadcrumb-item"><a href="#">Thêm nhân viên</a></li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <h3 class="tile-title">Tạo mới nhân viên</h3>
+        <div class="tile-body">
+          <form class="row" (ngSubmit)="onSubmit(employeeForm)" #employeeForm="ngForm">
+            <div class="form-group col-md-4">
+              <label class="control-label">Tên đăng nhập</label>
+              <input class="form-control" type="text" name="username" ngModel required>
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Mật khẩu</label>
+              <input class="form-control" type="password" name="password" ngModel required>
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Email</label>
+              <input class="form-control" type="email" name="email" ngModel required>
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Quyền bán hàng</label>
+              <select class="form-control" name="isSell" ngModel>
+                <option value="true">Có</option>
+                <option value="false">Không</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Quyền quản trị</label>
+              <select class="form-control" name="isAdmin" ngModel>
+                <option value="true">Có</option>
+                <option value="false">Không</option>
+              </select>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label">Ảnh đại diện</label>
+              <input type="file" id="profileImage" name="profileImage" (change)="onFileChange($event)" accept="image/*">
+              <div id="thumbbox" style="margin-top: 10px;">
+                <img #previewImage src="" alt="Preview Image" style="display: none; max-width: 100px; max-height: 100px;">
+              </div>
+            </div>
+            <button class="btn btn-save" type="submit">Lưu lại</button>
+            <a class="btn btn-cancel" href="#">Hủy bỏ</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-md-12">
+              <span class="thong-tin-thanh-toan">
+                <h5>Tạo chức vụ mới</h5>
+              </span>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label">Nhập tên chức vụ mới</label>
+              <input class="form-control" type="text" required>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-save" type="button">Lưu lại</button>
+          <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+          <br>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL -->
+</main>

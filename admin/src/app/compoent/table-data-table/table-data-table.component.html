@@ -1,0 +1,129 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách nhân viên</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <div class="tile-body">
+          <div class="row element-button">
+            <div class="col-sm-2">
+              <a class="btn btn-add btn-sm" [routerLink]="['/form-add-nhan-vien']" title="Thêm">
+                <i class="fas fa-plus"></i> Tạo mới nhân viên
+              </a>
+            </div>
+            <div class="col-sm-2">
+              <a class="btn btn-excel btn-sm" href="" title="In">
+                <i class="fas fa-file-excel"></i> Xuất Excel
+              </a>
+            </div>
+            <div class="col-sm-2">
+              <a class="btn btn-delete btn-sm" type="button" title="Xóa" (click)="deleteSelectedAccounts()">
+                <i class="fas fa-trash-alt"></i> Xóa tất cả
+              </a>
+            </div>
+          </div>
+          <div class="container">
+            <table class="table table-hover table-bordered" id="sampleTable">
+              <thead>
+                <tr>
+                  <th width="10"><input type="checkbox" id="all" (change)="toggleAll($event)"></th>
+                  <th>ID nhân viên</th>
+                  <th width="150">Tên đăng nhập</th>
+                  <th width="20">Ảnh thẻ</th>
+                  <th width="300">Email</th>
+                  <th>Quyền bán hàng</th>
+                  <th>Quyền quản trị</th>
+                  <th width="100">Tính năng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let account of accounts">
+                  <td width="10"><input type="checkbox" [(ngModel)]="account.selected"></td>
+                  <td>{{ account.uid }}</td> <!-- Sử dụng uId -->
+                  <td>{{ account.username }}</td>
+                  <td><img class="img-card-person" [src]="account.profileImage" alt="Ảnh thẻ"></td>
+                  <td>{{ account.email }}</td>
+                  <td>{{ account.isSell ? 'Có' : 'Không' }}</td>
+                  <td>{{ account.isAdmin ? 'Có' : 'Không' }}</td>
+                  <td>
+                    <button class="btn btn-primary btn-sm trash" title="Xóa" (click)="deleteAccount(account.uid)"> <!-- Sử dụng uId -->
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="btn btn-primary btn-sm edit" title="Sửa" (click)="editAccount(account)">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Modal for Editing Account -->
+          <div *ngIf="isModalVisible" class="modal fade show" id="ModalUP" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="form-group col-md-12">
+                      <span class="thong-tin-thanh-toan">
+                        <h5>Chỉnh sửa thông tin nhân viên cơ bản</h5>
+                      </span>
+                    </div>
+                  </div>
+                  <form [formGroup]="editForm" (ngSubmit)="onSave()">
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Tên đăng nhập</label>
+                        <input class="form-control" formControlName="username" type="text" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Mật khẩu</label>
+                        <input class="form-control" formControlName="password" type="password" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Email</label>
+                        <input class="form-control" formControlName="email" type="email" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Quyền bán hàng</label>
+                        <select class="form-control" formControlName="isSell">
+                          <option [value]="true">Có</option>
+                          <option [value]="false">Không</option>
+                       
+ </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Quyền quản trị</label>
+                        <select class="form-control" formControlName="isAdmin">
+                          <option [value]="true">Có</option>
+                          <option [value]="false">Không</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Ảnh đại diện</label>
+                        <input class="form-control" formControlName="profileImage" type="file" (change)="onFileChange($event)" accept="image/*">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label class="control-label">Xem trước ảnh</label>
+                        <img id="previewImage" class="img-fluid" [src]="previewImageUrl" alt="Preview Image" style="max-width: 100px;">
+                      </div>
+                    </div>
+                    <br><br>
+                    <button class="btn btn-save" type="submit">Lưu lại</button>
+                    <button class="btn btn-cancel" type="button" (click)="closeModal()">Hủy bỏ</button>
+                    <br>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

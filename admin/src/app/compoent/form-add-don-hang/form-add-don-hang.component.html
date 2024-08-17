@@ -1,0 +1,58 @@
+<main class="app-content">
+  <div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+      <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+    </ul>
+    <div id="clock"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tile">
+        <h3 class="tile-title">Tạo mới đơn hàng</h3>
+        <div class="tile-body">
+          <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="row">
+            <div class="form-group col-md-4">
+              <label class="control-label">ID Đơn Hàng</label>
+              <input class="form-control" formControlName="maHD" type="text" [readonly]="true">
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Tên Sản Phẩm</label>
+              <input class="form-control" formControlName="productName" type="text">
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Màu Sắc</label>
+              <select class="form-control" formControlName="color">
+                <option value="">-- Chọn màu sắc --</option>
+                <option *ngFor="let color of colors" [value]="color">{{ color }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Số Lượng</label>
+              <input class="form-control" formControlName="quantity" type="number">
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Tổng Tiền</label>
+              <input class="form-control" formControlName="tongGia" type="number" step="0.01">
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Ngày Xuất</label>
+              <input class="form-control" formControlName="ngayXuat" type="datetime-local">
+            </div>
+            <div class="form-group col-md-4">
+              <label class="control-label">Tình Trạng</label>
+              <select class="form-control" formControlName="status">
+                <option value="">-- Chọn tình trạng --</option>
+                <option value="PENDING">Đang chờ xử lý</option>
+                <option value="SHIPPED">Đã giao</option>
+                <option value="CANCELED">Đã hủy</option>
+                <option value="DELIVERED">Đã nhận</option>
+              </select>
+            </div>
+            <button class="btn btn-save" type="submit">Lưu lại</button>
+            <a class="btn btn-cancel" href="/doc/table-data-oder.html">Hủy bỏ</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
